@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load allauth account %}
+{% load widget_tweaks %}
+
+{% block title %}
+{% trans "Sign In" %}
+{% endblock title %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6 offset-3 p-5 border">
+        <h2 class="text-center mb-3">{% trans "Sign In" %}</h2>
+        <p>まだアカウントを作成していない場合は、
+            <a href="{{ signup_url }}">ユーザー登録 </a>
+            をしてください。
+        </p>
+
+        {% url 'account_login' as login_url %}
+        {% element form form=form method="post" action=login_url tags="entrance,login" %}
+        {% slot body %}
+        {% csrf_token %}
+        {% include 'account/snippets/form_error_messages.html' %}
+        <div class="mb-3">
+            <label for="id_login">{{ form.login.label }}:</label>
+            {% render_field form.login class="form-control" placeholder="" %}
+        </div>
+        <div class="mb-3">
+            <label for="id_password">{{ form.password.label }}:</label>
+            {% render_field form.password class="form-control" placeholder="" %}
+        </div>
+        <div class="d-flex mb-3">
+            <label for="id_remember" class="pe-3">{{ form.remember.label }}</label>
+            {% render_field form.remember class="form-check" placeholder="" %}
+        </div>
+        <p class="my-3">
+            <a href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
+        </p>
+        {% if redirect_field_value %}
+        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+        {% endif %}
+        {% endslot %}
+        {% slot actions %}
+        <div class="mb-3 text-end">
+            <button type="submit" tags="prominent,login" class="btn btn-primary">{% trans "Sign In" %}</button>
+        </div>
+        {% endslot %}
+        {% endelement %}
+    </div>
+</div>
+
+{% endblock content %}
