@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+プロフィール
+{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-6 offset-3 p-5 border">
+        <h2 class="text-center mb-3">
+            プロフィール
+        </h2>
+        <div class="text-center mb-3">
+            {% if profile_data.image %}
+            <img src="{{ profile_data.image.url }}" alt="ユーザーイメージ画像" style="width: 100px; height: 100px;">
+            {% else %}
+            <img src="{% static 'account/user_image/default_image.jpg'%}" alt="デフォルトイメージ画像" style="width: 150px; height: 150px;">
+            {% endif %}
+        </div>
+
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="id_username">{{ form.username.label }}:</label>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label for="id_introduction">{{ form.introduction.label }}:</label>
+                {{ form.introduction }}
+            </div>
+            <div class="mb-3">
+                <label for="id_birth">{{ form.birth.label }}:</label>
+                {{ form.birth }}
+            </div>
+            <div class="mb-3">
+                <label for="id_image">{{ form.image.label }}:</label>
+                {{ form.image }}
+                {% if profile_data.image %}
+                <label for="image_clear_id">現在: </label>
+                <a href="{{ profile_data.image.url }}">{{ profile_data.image }}</a>
+                <input type="checkbox" name="image-clear" id="image-clear_id">
+                <span>クリア</span>
+                {% endif %}
+            </div>
+            <div class="text-end mb-3">
+                <button type="submit" class="btn btn-primary">更新</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

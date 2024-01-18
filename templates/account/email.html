@@ -48,11 +48,14 @@
             {% endslot %}
             {% slot actions %}
             <div class="text-end mb-3">
-                <button type="submit" name="action_primary" class="btn btn-primary">{% trans 'Make Primary' %}</button>
-                <button type="submit" name="action_send" tags="secondary" class="btn btn-success">{% trans 'Re-send
-                    Verification' %}</button>
-                <button type="submit" name="action_remove" tags="danger,delete" class="btn btn-danger">{% trans 'Remove'
-                    %}</button>
+                <button type="submit" name="action_primary" class="btn btn-primary">
+                    {% trans 'Make Primary' %}
+                </button>
+                <button type="submit" name="action_send" tags="secondary" class="btn btn-success">
+                    {% trans 'Re-send Verification' %}
+                </button>
+                <button type="submit" name="action_remove" tags="danger,delete" class="btn btn-danger">
+                    {% trans 'Remove' %}</button>
             </div>
             {% endslot %}
             {% endelement %}
