@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% if 'new' in request.path %}
+新規作成
+{% else %}
+投稿編集
+{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-6 offset-3 p-5 border">
+        <h2 class="text-center mb-3">
+            {% if 'new' in request.path %}
+            新規作成
+            {% else %}
+            投稿編集
+            {% endif %}
+        </h2>
+        <div class="mb-3">
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="text-end mb-3">
+                    <button type="submit" class="btn btn-primary">
+                        {% if 'new' in request.path %}
+                        新規投稿
+                        {% else %}
+                        更新
+                        {% endif %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

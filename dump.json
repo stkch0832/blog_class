@@ -1,0 +1,1 @@
+[{"model": "blog.post", "pk": 1, "fields": {"author": 2, "title": "test1", "content": "text, \r\ntext, text, \r\ntext, text, text,", "image": "blog/upload_pict/2/ƒ„ƒhƒ“.png", "created_at": "2024-01-20T05:07:00.036Z", "updated_at": "2024-01-20T05:07:00.036Z"}}]

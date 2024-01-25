@@ -40,9 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # applications
     'accounts',
+    'blog',
 
     # packages
     'debug_toolbar',
+    'django_seed',
     'django_cleanup',
     'widget_tweaks',
     'sass_processor',

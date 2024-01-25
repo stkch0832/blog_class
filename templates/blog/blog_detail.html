@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+投稿詳細
+{% endblock %}
+
+{% block content %}
+
+<div class="row">
+<div class="col-6 offset-3 p-5 border">
+    <h2 class="text-center mb-3">投稿詳細</h2>
+    <div class="mb-3">
+        <p class="mb-3">{{ post.title }}</p>
+        <p class="mb-3">{{ post.content }}</p>
+        {% if post.image %}
+        <img src="{{ post.image.url }}" alt="投稿画像">
+        {% endif %}
+        <p class="text-end mb-3">投稿日時：{{ post.created_at }}</p>
+        {% if post.updated_at != post.created_at %}
+        <p class="text-end mb-3">更新日時：{{ post.updated_at }}</p>
+        {% endif %}
+        <p class="text-end mb-3">投稿者：{{ post.author.profile.username }}</p>
+    </div>
+    {% if post.author == request.user %}
+    <div class="text-end mb-3">
+        <form action="{% url 'blog:blog_delete' post.pk %}" method="post">
+            {% csrf_token %}
+            <a href="{% url 'blog:blog_update' post.pk %}" class="btn btn-primary">編集</a>
+            <button type="submit" class="btn btn-danger" onclick="return confirm('{{ post.title }} を削除してもよろしいでしょうか？')">削除</button>
+        </form>
+    </div>
+    {% endif %}
+</div>
+</div>
+
+{% endblock %}
