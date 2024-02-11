@@ -2,6 +2,7 @@ from django.shortcuts import render
 from accounts.models import User, Profile
 from .models import Post
 from .forms import BlogForm
+from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -10,6 +11,9 @@ from django.contrib.messages.views import SuccessMessageMixin
 from django.urls import reverse, reverse_lazy
 from django.contrib import messages
 
+
+class BlogIndexView(TemplateView):
+    template_name="blog/index.html"
 
 class BlogListView(ListView):
     model = Post
